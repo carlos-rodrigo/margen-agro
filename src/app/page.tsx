@@ -100,32 +100,73 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-gradient-to-b from-green-50/50 to-background">
       {/* Header */}
-      <header className="border-b bg-primary/5">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-primary">
-                🌾 Calculadora de Margen Bruto
-              </h1>
-              <p className="text-muted-foreground">
-                Metodología INTA para análisis económico agrícola
-              </p>
+      <header className="border-b bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          {/* Top row: Logo + Ad banner placeholder */}
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-center gap-4">
+              {/* Logo y nombre */}
+              <div className="flex items-center gap-2">
+                <span className="text-3xl">🌾</span>
+                <div>
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
+                    RindeMax
+                  </h1>
+                  <p className="text-sm text-muted-foreground -mt-1">
+                    Calculá tu margen. Maximizá tu campo.
+                  </p>
+                </div>
+              </div>
+              {/* Badges */}
+              <div className="hidden sm:flex items-center gap-2 ml-4">
+                <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20">
+                  ✓ Gratis
+                </span>
+                <span className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700 ring-1 ring-inset ring-amber-600/20">
+                  ✓ Sin registro
+                </span>
+              </div>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <CurrencyToggle onToggle={handleCurrencyToggle} />
-              <ExportButtons inputs={inputs} results={results} />
+            
+            {/* Ad banner placeholder */}
+            <div className="hidden lg:flex items-center justify-center w-[468px] h-[60px] bg-gray-100 border border-dashed border-gray-300 rounded text-xs text-gray-400">
+              Espacio publicitario
             </div>
+          </div>
+
+          {/* Mobile badges */}
+          <div className="flex sm:hidden items-center gap-2 mt-3">
+            <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20">
+              ✓ Gratis
+            </span>
+            <span className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700 ring-1 ring-inset ring-amber-600/20">
+              ✓ Sin registro
+            </span>
+          </div>
+
+          {/* Controls row */}
+          <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t">
+            <CurrencyToggle onToggle={handleCurrencyToggle} />
+            <ExportButtons inputs={inputs} results={results} />
           </div>
         </div>
       </header>
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        <div className="grid gap-8 lg:grid-cols-[1fr_400px]">
+        <div className="grid gap-8 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_400px_180px]">
           {/* Forms Column */}
           <div className="space-y-4">
+            {/* CTA Banner */}
+            <div className="bg-gradient-to-r from-green-600 to-green-500 rounded-lg p-4 text-white shadow-lg">
+              <h2 className="text-lg font-bold">🚀 Calculá ahora tu margen bruto</h2>
+              <p className="text-green-100 text-sm mt-1">
+                Completá los datos de tu campaña y optimizá tu rentabilidad
+              </p>
+            </div>
+
             <ProductionForm onChange={setProduccion} />
             
             <PriceForm
@@ -150,6 +191,13 @@ export default function Home() {
               costosDirectos={results.costosDirectosHa}
               onChange={setFinanciamiento}
             />
+
+            {/* Bottom CTA */}
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-center">
+              <p className="text-amber-800 font-medium">
+                💡 Optimizá tu campaña compartiendo este análisis con tu equipo
+              </p>
+            </div>
           </div>
 
           {/* Results Column */}
@@ -166,18 +214,35 @@ export default function Home() {
             <WaterfallChart results={results} />
             <CostBreakdownChart results={results} />
           </div>
+
+          {/* Ads Sidebar (desktop only) */}
+          <div className="hidden xl:block space-y-4">
+            <div className="sticky top-8 space-y-4">
+              <div className="flex flex-col items-center justify-center w-[160px] h-[600px] bg-gray-100 border border-dashed border-gray-300 rounded text-xs text-gray-400 text-center p-4">
+                Publicidad
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="border-t bg-muted/30 py-6 mt-12">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>
-            Calculadora de Margen Bruto Agrícola - Metodología INTA
-          </p>
-          <p className="mt-1">
-            Los precios son referenciales. Consulte con un profesional para decisiones comerciales.
-          </p>
+      <footer className="border-t bg-white py-8 mt-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xl">🌾</span>
+                <span className="font-bold text-green-600">RindeMax</span>
+              </div>
+              <p className="text-sm text-muted-foreground mt-1">
+                Calculadora de Margen Bruto Agrícola
+              </p>
+            </div>
+            <div className="text-sm text-muted-foreground">
+              <p>Los precios son referenciales. Consulte con un profesional para decisiones comerciales.</p>
+            </div>
+          </div>
         </div>
       </footer>
     </main>
