@@ -74,7 +74,7 @@ export function CosechaForm({ rendimiento = 0, onChange }: CosechaFormProps) {
         <AccordionContent className="space-y-6 pt-4">
           {/* COSECHA */}
           <div className="space-y-3">
-            <h4 className="font-medium text-sm border-b pb-1">🌾 Cosecha</h4>
+            <h4 className="font-medium text-sm border-b pb-1">Cosecha</h4>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="space-y-1">
                 <Label className="text-xs">Tarifa base (USD/ha)</Label>
@@ -154,7 +154,7 @@ export function CosechaForm({ rendimiento = 0, onChange }: CosechaFormProps) {
 
           {/* COMERCIALIZACIÓN */}
           <div className="space-y-3">
-            <h4 className="font-medium text-sm border-b pb-1">📊 Comercialización</h4>
+            <h4 className="font-medium text-sm border-b pb-1">Comercialización</h4>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="space-y-1">
                 <Label className="text-xs">Comisión acopio (%)</Label>

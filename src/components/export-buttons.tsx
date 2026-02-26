@@ -45,7 +45,7 @@ export function ExportButtons({ inputs, results }: ExportButtonsProps) {
   const getShareText = () => {
     const cultivo = inputs.produccion.cultivo;
     const margen = results.margenBrutoHa.toFixed(2);
-    return `Calculé mi margen bruto de ${cultivo}: USD ${margen}/ha con RindeMax 🌾`;
+    return `Calculé mi margen bruto de ${cultivo}: USD ${margen}/ha con RindeMax`;
   };
 
   const handleCopyLink = async () => {
@@ -238,7 +238,7 @@ function generatePrintContent(
   </style>
 </head>
 <body>
-  <h1>🌾 RindeMax - Análisis de Margen Bruto</h1>
+  <h1>RindeMax - Análisis de Margen Bruto</h1>
   <p class="subtitle">Generado el ${new Date().toLocaleDateString("es-AR")}</p>
   
   <h2>📋 Datos de Producción</h2>
@@ -279,7 +279,7 @@ function generatePrintContent(
     </tr>
   </table>
 
-  <h2>📊 Desglose de Costos</h2>
+  <h2>Desglose de Costos</h2>
   <table>
     <tr>
       <th>Rubro</th>
@@ -309,7 +309,7 @@ function generatePrintContent(
   </div>
 
   <div class="footer">
-    <p><strong>🌾 RindeMax</strong> - Calculá tu margen. Maximizá tu campo.</p>
+    <p><strong>RindeMax</strong> - Calculá tu margen. Maximizá tu campo.</p>
     <p>Este es un análisis referencial. Consulte con un profesional para decisiones comerciales.</p>
   </div>
 </body>

@@ -89,7 +89,7 @@ export function PriceForm({ cultivo, precioPizarra, fechaPizarra, onChange }: Pr
                 <div className="flex items-center gap-2">
                   {isPrecioPizarra ? (
                     <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs text-green-700">
-                      📊 Pizarra {fechaPizarra || ""}
+                      Pizarra {fechaPizarra || ""}
                     </span>
                   ) : (
                     <>

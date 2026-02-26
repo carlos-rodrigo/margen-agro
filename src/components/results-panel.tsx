@@ -51,7 +51,7 @@ export function ResultsPanel({ results, unidadRendimiento, superficie, showARS =
     <Card className="shadow-lg">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2">
-          📊 Resultados
+          Resultados
           {hasData && (
             <span
               className={`ml-auto rounded-full px-2 py-0.5 text-xs ${

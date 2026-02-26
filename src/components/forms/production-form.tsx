@@ -76,7 +76,7 @@ export function ProductionForm({ onChange }: ProductionFormProps) {
     <Accordion type="single" collapsible defaultValue="produccion">
       <AccordionItem value="produccion">
         <AccordionTrigger className="text-lg font-semibold">
-          🌾 Producción y Superficie
+          Producción y Superficie
         </AccordionTrigger>
         <AccordionContent className="space-y-4 pt-4">
           {/* Cultivo */}

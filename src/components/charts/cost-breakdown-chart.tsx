@@ -6,8 +6,8 @@ import {
   Cell,
   ResponsiveContainer,
   Tooltip,
-  Legend,
 } from "recharts";
+import { PieChart as PieChartIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { CalculationResults } from "@/lib/types";
 
@@ -15,16 +15,17 @@ interface CostBreakdownChartProps {
   results: CalculationResults;
 }
 
+// Agricultural color palette - earthy tones
 const COLORS = [
-  "#22c55e", // green - Labores
-  "#eab308", // yellow - Semilla
-  "#3b82f6", // blue - Fertilizantes
-  "#8b5cf6", // purple - Agroquímicos
-  "#f97316", // orange - Cosecha
-  "#ec4899", // pink - Flete
-  "#14b8a6", // teal - Comercialización
-  "#ef4444", // red - Arrendamiento
-  "#6366f1", // indigo - Financiamiento
+  "#1a4d1a", // forest green - Labores
+  "#d4a84b", // amber/wheat - Semilla
+  "#2d6a2d", // mid green - Fertilizantes
+  "#8b7355", // earth brown - Agroquímicos
+  "#c45c3e", // terracotta - Cosecha
+  "#5c8a5c", // sage green - Flete
+  "#a67c52", // tan - Comercialización
+  "#4a7c59", // hunter green - Arrendamiento
+  "#7a6348", // brown - Financiamiento
 ];
 
 function formatCurrency(value: number): string {
@@ -67,9 +68,9 @@ export function CostBreakdownChart({ results }: CostBreakdownChartProps) {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="rounded-lg border bg-background p-2 shadow-sm">
+        <div className="rounded-lg border-2 border-border bg-card p-2">
           <p className="font-medium">{data.name}</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm font-mono text-muted-foreground">
             {formatCurrency(data.value)} ({data.percent.toFixed(1)}%)
           </p>
         </div>
@@ -80,15 +81,15 @@ export function CostBreakdownChart({ results }: CostBreakdownChartProps) {
 
   const renderLegend = () => {
     return (
-      <div className="grid grid-cols-2 gap-1 text-xs mt-2">
+      <div className="grid grid-cols-2 gap-1.5 text-xs mt-2">
         {dataWithPercent.map((entry) => (
-          <div key={entry.name} className="flex items-center gap-1">
+          <div key={entry.name} className="flex items-center gap-1.5">
             <div
-              className="h-2 w-2 rounded-full"
+              className="h-2.5 w-2.5 rounded-sm flex-shrink-0"
               style={{ backgroundColor: entry.color }}
             />
             <span className="truncate">{entry.name}</span>
-            <span className="text-muted-foreground ml-auto">
+            <span className="font-mono text-muted-foreground ml-auto">
               {entry.percent.toFixed(0)}%
             </span>
           </div>
@@ -100,8 +101,9 @@ export function CostBreakdownChart({ results }: CostBreakdownChartProps) {
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium">
-          🥧 Distribución de Costos
+        <CardTitle className="text-sm font-medium flex items-center gap-2">
+          <PieChartIcon className="h-4 w-4 text-primary" />
+          Distribución de Costos
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -116,6 +118,8 @@ export function CostBreakdownChart({ results }: CostBreakdownChartProps) {
                 outerRadius={80}
                 paddingAngle={2}
                 dataKey="value"
+                stroke="hsl(var(--background))"
+                strokeWidth={2}
               >
                 {dataWithPercent.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
@@ -126,7 +130,7 @@ export function CostBreakdownChart({ results }: CostBreakdownChartProps) {
           </ResponsiveContainer>
         </div>
         {renderLegend()}
-        <div className="mt-3 text-center text-sm text-muted-foreground">
+        <div className="mt-3 text-center text-sm font-mono text-muted-foreground">
           Total: {formatCurrency(total)} USD/ha
         </div>
       </CardContent>

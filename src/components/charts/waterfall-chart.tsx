@@ -10,6 +10,7 @@ import {
   Cell,
   ReferenceLine,
 } from "recharts";
+import { BarChart3 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { CalculationResults } from "@/lib/types";
 
@@ -24,6 +25,14 @@ interface WaterfallData {
   start: number;
   end: number;
 }
+
+// Agricultural color palette
+const COLORS = {
+  income: "#1a4d1a", // forest green
+  cost: "#c45c3e", // terracotta
+  profitPositive: "#2d6a2d", // darker green
+  profitNegative: "#c45c3e", // terracotta
+};
 
 function formatCurrency(value: number): string {
   return `$${Math.abs(value).toFixed(0)}`;
@@ -45,7 +54,7 @@ export function WaterfallChart({ results }: WaterfallChartProps) {
     {
       name: "Ingreso",
       value: ingresoBrutoHa,
-      fill: "#22c55e", // green-500
+      fill: COLORS.income,
       start: 0,
       end: ingresoBrutoHa,
     },
@@ -69,7 +78,7 @@ export function WaterfallChart({ results }: WaterfallChartProps) {
       data.push({
         name: costo.name,
         value: -costo.value,
-        fill: "#ef4444", // red-500
+        fill: COLORS.cost,
         start,
         end: running,
       });
@@ -80,7 +89,7 @@ export function WaterfallChart({ results }: WaterfallChartProps) {
   data.push({
     name: "Margen",
     value: margenBrutoHa,
-    fill: margenBrutoHa >= 0 ? "#22c55e" : "#ef4444",
+    fill: margenBrutoHa >= 0 ? COLORS.profitPositive : COLORS.profitNegative,
     start: 0,
     end: margenBrutoHa,
   });
@@ -99,8 +108,9 @@ export function WaterfallChart({ results }: WaterfallChartProps) {
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium">
-          📊 Composición del Margen (USD/ha)
+        <CardTitle className="text-sm font-medium flex items-center gap-2">
+          <BarChart3 className="h-4 w-4 text-primary" />
+          Composición del Margen (USD/ha)
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -112,14 +122,16 @@ export function WaterfallChart({ results }: WaterfallChartProps) {
             >
               <XAxis
                 dataKey="name"
-                tick={{ fontSize: 11 }}
+                tick={{ fontSize: 11, fill: "hsl(var(--foreground))" }}
                 angle={-45}
                 textAnchor="end"
                 interval={0}
+                stroke="hsl(var(--border))"
               />
               <YAxis
-                tick={{ fontSize: 11 }}
+                tick={{ fontSize: 11, fill: "hsl(var(--foreground))" }}
                 tickFormatter={(value) => `$${value}`}
+                stroke="hsl(var(--border))"
               />
               <Tooltip
                 formatter={(value, _name, entry) => {
@@ -127,8 +139,14 @@ export function WaterfallChart({ results }: WaterfallChartProps) {
                   return [formatCurrency(actualValue), actualValue >= 0 ? "+" : "-"];
                 }}
                 labelFormatter={(label) => `${label}`}
+                contentStyle={{
+                  backgroundColor: "hsl(var(--card))",
+                  border: "2px solid hsl(var(--border))",
+                  borderRadius: "var(--radius)",
+                  fontFamily: "var(--font-mono)",
+                }}
               />
-              <ReferenceLine y={0} stroke="#888" />
+              <ReferenceLine y={0} stroke="hsl(var(--border))" />
               <Bar dataKey="value" radius={[4, 4, 0, 0]}>
                 {chartData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />

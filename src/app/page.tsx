@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { Wheat, TrendingUp, Lightbulb, Check } from "lucide-react";
 import { ProductionForm } from "@/components/forms/production-form";
 import { PriceForm } from "@/components/forms/price-form";
 import { LaboresForm } from "@/components/forms/labores-form";
@@ -109,7 +110,7 @@ export default function Home() {
             <div className="flex items-center gap-4">
               {/* Logo y nombre */}
               <div className="flex items-center gap-2">
-                <span className="text-3xl">🌾</span>
+                <Wheat className="h-8 w-8 text-primary" />
                 <div>
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
                     RindeMax
@@ -121,11 +122,11 @@ export default function Home() {
               </div>
               {/* Badges */}
               <div className="hidden sm:flex items-center gap-2 ml-4">
-                <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20">
-                  ✓ Gratis
+                <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20">
+                  <Check className="h-3 w-3" /> Gratis
                 </span>
-                <span className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700 ring-1 ring-inset ring-amber-600/20">
-                  ✓ Sin registro
+                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700 ring-1 ring-inset ring-amber-600/20">
+                  <Check className="h-3 w-3" /> Sin registro
                 </span>
               </div>
             </div>
@@ -138,11 +139,11 @@ export default function Home() {
 
           {/* Mobile badges */}
           <div className="flex sm:hidden items-center gap-2 mt-3">
-            <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20">
-              ✓ Gratis
+            <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700 ring-1 ring-inset ring-green-600/20">
+              <Check className="h-3 w-3" /> Gratis
             </span>
-            <span className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700 ring-1 ring-inset ring-amber-600/20">
-              ✓ Sin registro
+            <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700 ring-1 ring-inset ring-amber-600/20">
+              <Check className="h-3 w-3" /> Sin registro
             </span>
           </div>
 
@@ -161,7 +162,9 @@ export default function Home() {
           <div className="space-y-4">
             {/* CTA Banner */}
             <div className="bg-gradient-to-r from-green-600 to-green-500 rounded-lg p-4 text-white shadow-lg">
-              <h2 className="text-lg font-bold">🚀 Calculá ahora tu margen bruto</h2>
+              <h2 className="text-lg font-bold flex items-center gap-2">
+                <TrendingUp className="h-5 w-5" /> Calculá ahora tu margen bruto
+              </h2>
               <p className="text-green-100 text-sm mt-1">
                 Completá los datos de tu campaña y optimizá tu rentabilidad
               </p>
@@ -194,8 +197,8 @@ export default function Home() {
 
             {/* Bottom CTA */}
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-center">
-              <p className="text-amber-800 font-medium">
-                💡 Optimizá tu campaña compartiendo este análisis con tu equipo
+              <p className="text-amber-800 font-medium flex items-center justify-center gap-2">
+                <Lightbulb className="h-4 w-4" /> Optimizá tu campaña compartiendo este análisis con tu equipo
               </p>
             </div>
           </div>
@@ -232,7 +235,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xl">🌾</span>
+                <Wheat className="h-5 w-5 text-primary" />
                 <span className="font-bold text-green-600">RindeMax</span>
               </div>
               <p className="text-sm text-muted-foreground mt-1">
